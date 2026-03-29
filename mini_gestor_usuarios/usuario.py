@@ -1,6 +1,6 @@
-
+# aaron evangelista - daw
 class Usuario:
-
+    # datos no se modifiquen desde fuera Solo se cambian usando Getters y Setters.
     def __init__(self, nombre, edad, email):
         self.__nombre = None
         self.__edad = None
@@ -20,26 +20,22 @@ class Usuario:
         return self.__email
 
     def set_nombre(self, nombre):
-
         if nombre.strip() == "":
-            raise ValueError("El nombre no puede estar vacio.")
-
+            raise ValueError("El nombre no puede estar vacio")
         self.__nombre = nombre
 
     def set_edad(self, edad):
-
-        if not isinstance(edad, int) or edad <= 0:
-            raise ValueError("La edad tiene que ser mayor que 0")
-
-        self.__edad = edad
+        edad_int = int(edad)  # Convertimos el texto del input a numero entero
+        if edad_int <= 0:
+            raise ValueError("La edad tiene que ser mayor que 0.")
+        self.__edad = edad_int
 
     def set_email(self, email):
-
         if "@" not in email or "." not in email:
-            raise ValueError("No tiene @")
-
+            raise ValueError("Error el email debe contener @")
         self.__email = email
+
+    # Este metodo __str__ sirve para que cuando imprimamos al usuario con print()
 
     def __str__(self):
         return f"Usuario: {self.__nombre} | Edad: {self.__edad} | Email: {self.__email}"
-    
