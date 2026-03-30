@@ -25,14 +25,20 @@ class Usuario:
         self.__nombre = nombre
 
     def set_edad(self, edad):
-        edad_int = int(edad)  # Convertimos el texto del input a numero entero
+        try:
+            edad_int = int(edad)  # Convertimos el texto del input a numero entero
+        except ValueError:
+            # Si escriben letras lanzamos nuestro propio mensaje de error
+            raise ValueError("La edad debe ser un numero entero")
+            
         if edad_int <= 0:
-            raise ValueError("La edad tiene que ser mayor que 0.")
+            raise ValueError("La edad tiene que ser mayor que 0")
+            
         self.__edad = edad_int
 
     def set_email(self, email):
         if "@" not in email or "." not in email:
-            raise ValueError("Error el email debe contener @")
+            raise ValueError("Error el email debe contener @ y .")
         self.__email = email
 
     # Este metodo __str__ sirve para que cuando imprimamos al usuario con print()
